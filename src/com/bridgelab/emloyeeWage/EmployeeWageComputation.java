@@ -1,5 +1,6 @@
 package com.bridgelab.emloyeeWage;
 
+//UC-4 Employee daily wage using Switch case statement
 public class EmployeeWageComputation {
     static int isFullTime = 1;
     static int isPartTime =2;
@@ -18,23 +19,19 @@ public class EmployeeWageComputation {
         return (int) empAttain;
     }
     public void dailyWage(int empAttain) {
+        int workingHour=0;
+        switch (empAttain){
+            case 1:
+                workingHour = 8;
+                break;
+            case 2:
+                workingHour = 4;
+                break;
+            default:
+        }
+        int wage = workingHour * wagePerHr;
 
-        if (empAttain == isFullTime){
-            int workingHour=8;
-            int dailyWage= wagePerHr*workingHour;
-            System.out.println("Employee daily wage : " +dailyWage);
-        }
-        else if (empAttain == isPartTime){
-            int workingHour=4;
-            int dailyWage= wagePerHr*workingHour;
-            System.out.println("Employee daily wage : " +dailyWage);
-        }
-        else {
-            int workingHour = 0;
-            int dailyWage = wagePerHr*workingHour;
-
-            System.out.println("Employee daily wage : " +dailyWage);
-        }
+        System.out.println(" wage of employee: " +wage);
     }
 
     public static void main(String[] args) {
