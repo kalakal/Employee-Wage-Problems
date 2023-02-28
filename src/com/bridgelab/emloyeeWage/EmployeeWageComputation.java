@@ -6,17 +6,17 @@ public class EmployeeWageComputation {
     static int isPartTime = 2;
     static int wagePerHr = 20;
     static int maxWorkDay =20;
+    static int maxWorkHr = 100;
 
     public void display() {
         System.out.println("Well come to Employee wage computation program");
     }
-
-
     public void monthWage() {
         int workingHour = 0;
         int totalWage=0;
         int totalWorkingHour=0;
-        for (int day = 1; day<=maxWorkDay; day++) {
+        for (int day = 1; day < maxWorkDay
+                && totalWorkingHour < maxWorkHr; day++ ) {
             int empCheck = (int) (Math.floor(Math.random() * 10) % 3);
             switch (empCheck) {
                 case 1:
