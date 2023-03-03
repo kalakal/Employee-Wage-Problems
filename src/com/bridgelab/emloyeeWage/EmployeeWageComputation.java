@@ -1,49 +1,52 @@
 package com.bridgelab.emloyeeWage;
 
-//UC-7 Employee Monthly wage for 20 working days and 100 hours using class object and method.
+import java.util.Scanner;
+
+//UC-8 Employee monthly salary for multiple company.
 
 public class EmployeeWageComputation {
-    static int isFullTime = 1;
-    static int isPartTime = 2;
-    static int wagePerHr = 20;
-    static int maxWorkDay = 20;
-    static int maxWorkHr = 100;
-    static int totalWorkingHour = 0;
+    public static void wage(String companyName, int WAGE_PER_HR, int MAX_WORKING_DAYS, int MAX_WORKING_HRS) {
+        final int PART_TIME = 1;
+        final int FULL_TIME = 2;
 
-    public void display() {
-        System.out.println("Well come to Employee wage computation program");
-    }
-
-    public void monthWage() {
-        int workingHour = 0;
         int totalWage = 0;
-        for (int day = 1; day < maxWorkDay && totalWorkingHour < maxWorkHr; day++) {
-            int empCheck = (int) (Math.floor(Math.random() * 10) % 3);
-            switch (empCheck) {
-                case 1:
-                    workingHour = 8;
+        int workingHrs = 0;
+        for (int day = 1, totalWorkingHrs = 0; day <= MAX_WORKING_DAYS
+                && totalWorkingHrs < MAX_WORKING_HRS; day++, totalWorkingHrs += workingHrs) {
+
+            int empType = (int) (Math.random() * 100) % 3;
+            switch (empType) {
+                case FULL_TIME:
+                    workingHrs = 8;
                     break;
-                case 2:
-                    workingHour = 4;
+                case PART_TIME:
+                    workingHrs = 4;
                     break;
                 default:
+                    workingHrs = 0;
+                    break;
             }
-            totalWorkingHour = totalWorkingHour + workingHour;
-            if (totalWorkingHour > maxWorkHr) {
-                totalWorkingHour = maxWorkHr;
-            }
+            int wage = workingHrs * WAGE_PER_HR;
+            totalWage += wage;
         }
-
-        totalWage = totalWorkingHour * wagePerHr;
-
-        System.out
-                .println("Monthly wage of employee: " + totalWage + "    Total  Working hour is: " + totalWorkingHour);
+        System.out.println("Total wage of  " + companyName + "  for a month is  " + totalWage);
     }
 
     public static void main(String[] args) {
-        EmployeeWageComputation employee = new EmployeeWageComputation();
-        employee.display();
-        employee.monthWage();
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter number of company");
+        int numOfComp = sc.nextInt();
+        for (int i = 1; i <= numOfComp; i++) {
+            System.out.println("Enter company details");
+            System.out.println("Enter company name");
+            String compName = sc.next();
+            System.out.println("Enter Wage per hour for : " + compName);
+            int WagePerHr = sc.nextInt();
+            System.out.println("Enter maximum working day for : " + compName);
+            int maxWorkDay = sc.nextInt();
+            System.out.println("Enter maximum working hour for  : " + compName);
+            int maxWorkHr = sc.nextInt();
+            wage(compName, WagePerHr, maxWorkDay, maxWorkHr);
+        }
     }
-
 }
